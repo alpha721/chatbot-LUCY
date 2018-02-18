@@ -1,0 +1,91 @@
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+2018-02-18 23:14:15 | 
+query: hello
+LUCY: What can I call you?
+
+============================================================
+query: Neetu
+LUCY: My brain contains more than 22,000 patterns, but not one that matches your last input. How old are you?
+
+============================================================
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+2018-02-18 23:14:16 | 
+query: hello
+LUCY: What can I call you?
+
+============================================================
+query: Neetu
+LUCY: My brain contains more than 22,000 patterns, but not one that matches your last input. How old are you?
+
+============================================================
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+2018-02-18 23:15:31 | 
+query: hello
+LUCY: What can I call you?
+
+============================================================
+query: Neetu
+LUCY: I do not understand. What is your favorite movie?
+
+============================================================
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+2018-02-19 00:49:43 | 
+query: weather in Varanasi and Chennai
+LUCY : weather in Varanasi is Clear with a temperature of 18.09F
+weather in Chennai is Clear with a temperature of 24.55F
+
+
+============================================================
+query: weather in Bangalore
+LUCY : weather in Bengaluru is Clear with a temperature of 19.41F
+
+
+============================================================
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+2018-02-19 00:49:45 | 
+query: weather in Varanasi and Chennai
+LUCY : weather in Varanasi is Clear with a temperature of 18.09F
+weather in Chennai is Clear with a temperature of 24.55F
+
+
+============================================================
+query: weather in Bangalore
+LUCY : weather in Bengaluru is Clear with a temperature of 19.41F
+
+
+============================================================
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+2018-02-19 01:14:06 | 
+query: weather in Delhi
+LUCY : weather in Delhi is Foggy with a temperature of 14.03F
+
+
+============================================================
+query: hello 
+LUCY: What can I call you?
+
+============================================================
+query: whatever
+LUCY: Are you saying you don't care about it?
+
+============================================================
+query: ya
+LUCY: And?
+
+============================================================
+query: nothing
+LUCY: Tell me a story. Is that from ?
+
+============================================================
