@@ -93,7 +93,7 @@ def ask():
             query_result = google_places.text_search(query= message ,radius=1000)
             tell = ""
             endline = '\n'
-            for i in range(0,len(query_result.places)):
+            for i in range(0,3):
                 place = query_result.places[i]
                 tell += endline
                 tell += "\nName : " + place.name + endline
@@ -102,7 +102,7 @@ def ask():
                     tell +=  endline + "Phone : " + place.local_phone_number + endline
                 if (place.website != None):
                     tell += endline + "Website : " + place.website + endline
-                    tell += endline + endline
+                tell += endline + endline
             bot_response = "LUCY: " + endline + tell + endline
             response.append(bot_response)
             return jsonify({'status': 'OK', 'answer': bot_response})
@@ -111,7 +111,6 @@ def ask():
             tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
             tagged_sentences = [nltk.pos_tag(sentence) for sentence in tokenized_sentences]
             chunked_sentences = nltk.ne_chunk_sents(tagged_sentences, binary=True)
-
             entities = []
             for tree in chunked_sentences:
                 entities.extend(extract_entity_names(tree))

@@ -79,9 +79,11 @@ def ask():
                     a = response[x]
                     f.write("query: " + q + endline)
                     f.write(a + endline)
-                    f.write(endline + "============================================================" + endline)
-        	    kernel.saveBrain("bot_brain.brn")
-                break
+                    f.write(endline + "============================================================"
+                            + endline)
+                kernel.saveBrain("bot_brain.brn")
+                #break
+                sys.exit(0)
 
 	    elif message == "hey":
                 response.append("LUCY: hey, how can I help?")
@@ -107,7 +109,7 @@ def ask():
                 return jsonify({'status': 'OK', 'answer': bot_response})
 					    
               
-            elif "weather"'''or 'umbrella'or'rainy'or'sunny'or'cloudy'or'weather'or'clear'or'snow'or'hot' or 'rain' ''' in message:
+            elif "weather" in message:
                 sentences = nltk.sent_tokenize(message)
                 tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
                 tagged_sentences = [nltk.pos_tag(sentence) for sentence in tokenized_sentences]
