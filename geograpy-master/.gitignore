@@ -1,7 +1,0 @@
-*.pyc
-*.DS_Store
-venv
-geograpy/locs.db
-/dist/
-/*.egg-info
-/*.egg
