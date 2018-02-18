@@ -49,25 +49,20 @@ query = []
 
 @app.route("/ask", methods=['POST'])
 def ask():
-	message = str(request.form['messageText'])
-
-	kernel = aiml.Kernel()
-
-	if os.path.isfile("bot_brain.brn"):
-	    kernel.bootstrap(brainFile = "bot_brain.brn")
-	else:
-	    kernel.bootstrap(learnFiles = os.path.abspath("aiml/std-startup.xml"), commands = "load aiml b")
-	    kernel.saveBrain("bot_brain.brn")
+    message = str(request.form['messageText'])
+    kernel = aiml.Kernel()
+    if os.path.isfile("bot_brain.brn"):
+        kernel.bootstrap(brainFile = "bot_brain.brn")
+    else:
+        kernel.bootstrap(learnFiles = os.path.abspath("aiml/std-startup.xml"), commands = "load aiml b")
+        kernel.saveBrain("bot_brain.brn")
 
 	# kernel now ready for use
     while True:
-   	
         query.append(message)
         ################# Preprocessing of query ########################
-    	
-    	weather_words = ['temperature','umbrella','rainy','sunny','cloudy','weather','clear','snow','hot','rain']
-   		eat_words = ['restaurant','hungry','places to eat','grab a bite','theatres','movie shows']
-        
+        weather_words = ['temperature','umbrella','rainy','sunny','cloudy','weather','clear','snow','hot','rain']
+        eat_words = ['restaurant','restaurants','hungry','places to eat','grab a bite','theatres','movie shows']
         for word in weather_words:
             if word in message:
                 message += "weather"
@@ -75,9 +70,7 @@ def ask():
         for word in eat_words:
             if word in message:
                 message += "restaurants"
-
-
-	    if message == "save":
+        if message == "save":
             endline = "\n"
             ts = time.time()
             st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
@@ -90,33 +83,29 @@ def ask():
                 f.write("query: " + q + endline)
                 f.write(a + endline)
                 f.write(endline + "============================================================" + endline)
-    	    kernel.saveBrain("bot_brain.brn")
+            kernel.saveBrain("bot_brain.brn")
             break
 
-	    elif message == "hey":
+        elif message == "hey":
             response.append("LUCY: hey, how can I help?")
             return jsonify({'status':'OK','answer':"LUCY: hey, how can I help?"})
-	        
-	    elif "restaurants" in message:
-	    	query_result = google_places.text_search(query= message ,radius=1000)
-
-	    	tell = ""
-    		endline = '\n'
-            for i in range(0,3):
+        elif "restaurants" in message:
+            query_result = google_places.text_search(query= message ,radius=1000)
+            tell = ""
+            endline = '\n'
+            for i in range(0,len(query_result.places)):
                 place = query_result.places[i]
                 tell += endline
-		    tell += "\nName : " + place.name + endline
-		    place.get_details()
-            if (place.local_phone_number != None):
-		        tell +=  endline + "Phone : " + place.local_phone_number + endline
-            if (place.website != None):   
-		        tell += endline + "Website : " + place.website + endline
-                tell += endline + endline
+                tell += "\nName : " + place.name + endline
+                place.get_details()
+                if (place.local_phone_number != None):
+                    tell +=  endline + "Phone : " + place.local_phone_number + endline
+                if (place.website != None):
+                    tell += endline + "Website : " + place.website + endline
+                    tell += endline + endline
             bot_response = "LUCY: " + endline + tell + endline
             response.append(bot_response)
             return jsonify({'status': 'OK', 'answer': bot_response})
-				    
-	              
         elif "weather" in message:
             sentences = nltk.sent_tokenize(message)
             tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
@@ -126,21 +115,14 @@ def ask():
             entities = []
             for tree in chunked_sentences:
                 entities.extend(extract_entity_names(tree))
-        
             if (len(entities) == 0):
-                #ans = "LUCY: oh, I'm afraid you'll have to be little specific. e.g Try asking: 'weather in Delhi'"
-                #print(ans)
-                #response.append(ans)
-                #return jsonify({'status':'OK', 'answer': ans})
                 entities.append('Hyderabad')
-            
             list_ans = []
             for entity in entities:
                 query_result = google_places.text_search(query= entity ,radius=1000)
                 for place in query_result.places:
                     print(place.name)
                     cod = place.geo_location
-        
                     lat = cod['lat']
                     lng = cod['lng']
                     forecast = forecastio.load_forecast(api_key, lat, lng)
