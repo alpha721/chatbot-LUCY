@@ -120,10 +120,11 @@ def ask():
                     entities.extend(extract_entity_names(tree))
             
                 if (len(entities) == 0):
-                    ans = "LUCY: oh, I'm afraid you'll have to be little specific. e.g Try asking: 'weather in Delhi'"
-                    print(ans)
-                    response.append(ans)
-                    return jsonify({'status':'OK', 'answer': ans})
+                    #ans = "LUCY: oh, I'm afraid you'll have to be little specific. e.g Try asking: 'weather in Delhi'"
+                    #print(ans)
+                    #response.append(ans)
+                    #return jsonify({'status':'OK', 'answer': ans})
+                    entities.append("Hyderabad")
                 
                 list_ans = []
                 for entity in entities:
